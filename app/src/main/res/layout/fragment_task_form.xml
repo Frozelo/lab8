@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Поле для ввода содержания задачи -->
+    <EditText
+        android:id="@+id/editTextTaskContent"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:hint="@string/describe_your_task"
+        android:textColorHint="@android:color/darker_gray"
+        android:padding="10dp"
+        android:background="@color/cardview_dark_background" />
+
+    <!-- Группа радиокнопок для выбора приоритета -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/priority"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupPriority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"> <!-- Устанавливаем ориентацию в ряд -->
+
+        <RadioButton
+            android:id="@+id/radioHigh"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/high"
+            android:layout_weight="1"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_red_dark" />
+
+        <RadioButton
+            android:id="@+id/radioMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/medium"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_orange_dark" />
+
+        <RadioButton
+            android:id="@+id/radioLow"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/low"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_orange_light" />
+    </RadioGroup>
+
+    <!-- Кнопка для добавления задачи -->
+    <Button
+        android:id="@+id/buttonAddTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        android:layout_marginTop="24dp" />
+</LinearLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">mobile_development_lab_08</string>
+    <string name="app_name">ToDoList</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -43,4 +43,10 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="describe_your_task">Describe your task...</string>
+    <string name="priority">Priority:</string>
+    <string name="medium">MEDIUM</string>
+    <string name="low">LOW</string>
+    <string name="high">HIGH</string>
+    <string name="add">ADD</string>
 </resources>

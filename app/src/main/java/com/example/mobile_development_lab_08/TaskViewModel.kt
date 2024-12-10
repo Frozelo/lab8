@@ -1,3 +1,4 @@
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,8 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
             taskDao.insert(task)
             // После добавления задачи можно обновить список задач
             getTasks() // Обновляем список задач после добавления новой
+
+//            Log.i("Da emae", "$tasks")
         }
     }
 

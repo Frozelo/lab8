@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/material_dynamic_neutral60">
+
 
     <TextView
         android:id="@+id/taskContent"
@@ -10,6 +12,10 @@
         android:textColor="@android:color/black"
         android:textAlignment="center"
         android:textSize="18sp"
+        android:shadowDx="@integer/material_motion_duration_short_1"
+        android:shadowDy="@integer/material_motion_duration_short_1"
+        android:shadowRadius="@integer/material_motion_duration_long_1"
+        android:shadowColor="@color/cardview_dark_background"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true" /> <!-- Центрирование по вертикали -->
 
@@ -31,4 +37,6 @@
             android:layout_gravity="center"
             android:textSize="14sp" />
     </FrameLayout>
+
+
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.mobile_development_lab_08.ui
 import TaskAdapter
 import TaskViewModel
 import TaskViewModelFactory
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.example.mobile_development_lab_08.R
+import com.example.mobile_development_lab_08.TaskFormActivity
 import com.example.mobile_development_lab_08.db.TaskDatabase
 import com.example.mobile_development_lab_08.model.Priority
 import com.example.mobile_development_lab_08.model.Task
@@ -46,8 +48,8 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
         }
 
         // Пример добавления задачи (можно убрать или изменить по необходимости)
-        taskViewModel.addTask(content = "Сделать домашнее задание", priority = Priority.MEDIUM.level)
-
+//        taskViewModel.addTask(content = "Сделать домашнее задание", priority = Priority.MEDIUM.level)
+        taskViewModel.getTasks()
         // Добавление функциональности свайпа для удаления элементов
         val swipeHandler = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
@@ -77,8 +79,18 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
         fab.setOnClickListener {
             // Здесь можно открыть диалоговое окно или активность для добавления новой задачи.
             // Например, просто добавим новую задачу с фиксированным содержимым:
-            taskViewModel.addTask(content = "Новая задача", priority = Priority.MEDIUM.level)
+//            taskViewModel.addTask(content = "Новая задача", priority = Priority.MEDIUM.level)
+            val intent = Intent(requireContext(), TaskFormActivity::class.java)
+            startActivity(intent)
         }
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Обновляем список задач при возвращении к активности
+        taskViewModel.getTasks() // Метод для получения задач из базы данных
     }
 
     companion object {
