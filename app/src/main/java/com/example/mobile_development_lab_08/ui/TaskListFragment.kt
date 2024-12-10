@@ -16,6 +16,8 @@ import com.example.mobile_development_lab_08.R
 import com.example.mobile_development_lab_08.db.TaskDatabase
 import com.example.mobile_development_lab_08.model.Priority
 import com.example.mobile_development_lab_08.model.Task
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 class TaskListFragment : Fragment(R.layout.fragment_task_list) {
 
@@ -58,11 +60,25 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
                 val taskToDelete = adapter.getTaskAt(position) // Получаем задачу по позиции (добавьте этот метод в адаптер)
                 taskViewModel.deleteTask(taskToDelete) // Удаляем задачу через ViewModel
                 adapter.removeItem(position) // Метод удаления элемента в адаптере
+
+                // Показываем Snackbar для отмены удаления (если нужно)
+                Snackbar.make(view, "Задача удалена", Snackbar.LENGTH_LONG)
+                    .setAction("Отменить") {
+                        taskViewModel.addTask(taskToDelete.content, taskToDelete.priority) // Возвращаем задачу обратно в список
+                    }.show()
             }
         }
 
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+
+        // Обработка нажатия на FloatingActionButton (FAB)
+        val fab: FloatingActionButton = view.findViewById(R.id.fab)
+        fab.setOnClickListener {
+            // Здесь можно открыть диалоговое окно или активность для добавления новой задачи.
+            // Например, просто добавим новую задачу с фиксированным содержимым:
+            taskViewModel.addTask(content = "Новая задача", priority = Priority.MEDIUM.level)
+        }
     }
 
     companion object {
