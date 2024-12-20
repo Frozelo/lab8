@@ -21,7 +21,7 @@ class TaskHolder (itemView: View, private val context: Context, private val adap
         taskContent.text = task.content
         when (task.priority) {
             Priority.HIGH.level -> priorityCircle.backgroundTintList = ColorStateList.valueOf(Color.RED)
-            Priority.MEDIUM.level -> priorityCircle.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFA500")) // Оранжевый
+            Priority.MEDIUM.level -> priorityCircle.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFA500"))
             else -> priorityCircle.backgroundTintList = ColorStateList.valueOf(Color.YELLOW)
         }
         priorityNumber.text = task.priority.toString()

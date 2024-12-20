@@ -51,7 +51,7 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
 //        taskViewModel.addTask(content = "Сделать домашнее задание", priority = Priority.MEDIUM.level)
         taskViewModel.getTasks()
         // Добавление функциональности свайпа для удаления элементов
-        val swipeHandler = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+        val swipeHandler = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT ) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
                 return false // Не обрабатываем перемещение
             }
@@ -59,9 +59,9 @@ class TaskListFragment : Fragment(R.layout.fragment_task_list) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 // Удаляем элемент из адаптера по позиции
                 val position = viewHolder.adapterPosition
-                val taskToDelete = adapter.getTaskAt(position) // Получаем задачу по позиции (добавьте этот метод в адаптер)
-                taskViewModel.deleteTask(taskToDelete) // Удаляем задачу через ViewModel
-                adapter.removeItem(position) // Метод удаления элемента в адаптере
+                val taskToDelete = adapter.getTaskAt(position)
+                taskViewModel.deleteTask(taskToDelete)
+                adapter.removeItem(position)
 
                 // Показываем Snackbar для отмены удаления (если нужно)
                 Snackbar.make(view, "Задача удалена", Snackbar.LENGTH_LONG)

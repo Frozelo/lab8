@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
 
-    // Создаём LiveData для хранения списка задач
+    // LiveData для хранения списка задач
     private val _tasks = MutableLiveData<List<Task>>()
     val tasks: LiveData<List<Task>> get() = _tasks
 
@@ -17,15 +17,16 @@ class TaskViewModel(private val taskDao: TaskDao) : ViewModel() {
         val task = Task(content = content, priority = priority)
         viewModelScope.launch {
             taskDao.insert(task)
-            // После добавления задачи можно обновить список задач
-            getTasks() // Обновляем список задач после добавления новой
+            // Обновляем список задач после добавления новой
+            getTasks()
         }
     }
 
     fun getTasks() {
         viewModelScope.launch {
             val tasksList = taskDao.getAllTasks()
-            _tasks.postValue(tasksList) // Обновляем LiveData с новым списком задач
+            val sortedTasks = tasksList.sortedBy { it.priority }
+            _tasks.postValue(sortedTasks)
         }
     }
 
